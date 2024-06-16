@@ -1,0 +1,62 @@
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  border: 10px solid;
+  border-image: linear-gradient(45deg, green, blue) 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content {
+  text-align: center;
+}
+
+.landing-logo {
+  width: 550px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+p {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn {
+  background-color: #28a745;
+  /* Green */
+  color: white;
+}
+
+.signup-btn {
+  background-color: #007bff;
+  /* Blue */
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
