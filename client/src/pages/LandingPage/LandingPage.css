@@ -44,10 +44,7 @@
 .content {
   text-align: center;
   margin-bottom: 40px;
-}
-
-.content p:first-child {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 h1 {
@@ -67,7 +64,7 @@ p {
   justify-content: center;
   gap: 40px;
   margin-bottom: 40px;
-  margin-top: 40px;
+  margin-top: 70px;
 }
 
 .feature-icon {
@@ -85,6 +82,7 @@ p {
   justify-content: center;
   gap: 40px;
   margin-bottom: 40px;
+  padding: 10px;
 }
 
 .testimonial {
@@ -110,6 +108,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 }
 
 .rounded-image {
@@ -151,4 +150,19 @@ p {
 
 .btn:hover {
   opacity: 0.8;
+}
+
+.user-count-section {
+  text-align: center;
+  margin-top: 100px;
+  /* Adjust spacing */
+}
+
+.user-count {
+  font-size: 3em;
+  /* Adjust font size */
+  color: #333;
+  /* Adjust color */
+  font-weight: bold;
+  /* Add emphasis */
 }
