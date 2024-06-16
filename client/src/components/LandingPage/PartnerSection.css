@@ -1,0 +1,38 @@
+.partner-section {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.partner-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.partner-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.partner-logo img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo:hover img {
+  transform: translateY(-5px) rotateX(10deg) rotateY(10deg);
+}

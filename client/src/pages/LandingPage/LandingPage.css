@@ -77,11 +77,25 @@ p {
   margin-bottom: 10px;
 }
 
+.testimonials-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  min-width: 1300px;
+  margin-top: 80px;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+
 .testimonials {
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
   gap: 40px;
   margin-bottom: 40px;
+  margin-top: 70px;
   padding: 10px;
 }
 
@@ -91,6 +105,8 @@ p {
   background-color: #e0e0e0;
   border-radius: 10px;
   padding: 20px;
+  max-width: 500px;
+  /* Add max-width to control the size */
 }
 
 .testimonial p {
@@ -113,19 +129,37 @@ p {
 
 .rounded-image {
   width: 80px;
-  /* Adjust the size of the rounded image */
   height: 80px;
-  /* Maintain aspect ratio */
   border-radius: 50%;
-  /* Make it round */
   margin-bottom: 10px;
-  /* Adjust spacing */
 }
 
 .call-to-action {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.carousel-btn {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+}
+
+.left-btn {
+  position: absolute;
+  left: -70px;
+}
+
+.right-btn {
+  position: absolute;
+  right: -70px;
 }
 
 .btn {
@@ -148,6 +182,11 @@ p {
   color: white;
 }
 
+.cta-btn {
+  background-color: #007bff;
+  color: white;
+}
+
 .btn:hover {
   opacity: 0.8;
 }
@@ -155,14 +194,10 @@ p {
 .user-count-section {
   text-align: center;
   margin-top: 100px;
-  /* Adjust spacing */
 }
 
 .user-count {
   font-size: 3em;
-  /* Adjust font size */
   color: #333;
-  /* Adjust color */
   font-weight: bold;
-  /* Add emphasis */
 }

@@ -1,38 +1,52 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import PartnerSection from "../../components/LandingPage/PartnerSection";
 
 // Sample images (replace with your actual image URLs)
 import John from "../../assets/images/JohnSnow.png";
 import Dany from "../../assets/images/Dany.png";
 
+const testimonials = [
+  {
+    quote: "Great app! It helped me organize my tasks efficiently.",
+    author: "John Snow",
+    image: John,
+  },
+  {
+    quote: "Awesome features! Very user-friendly interface.",
+    author: "Dany",
+    image: Dany,
+  },
+  // Add more testimonials as needed
+];
+
 const LandingPage = ({ logo }) => {
-  const userCountRef = useRef(null); // Ref for the user count section
+  const userCountRef = useRef(null);
   const [userCount, setUserCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   useEffect(() => {
     const options = {
-      root: null, // Null means it uses the viewport
-      rootMargin: "0px", // Margin around the root. Here, no margin.
-      threshold: 0.5, // Percentage of the target's visibility needed to trigger the callback
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setIsVisible(true); // Set isVisible to true when userCount section is visible
-          observer.unobserve(entry.target); // Stop observing once section is visible
+          setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       });
     }, options);
 
-    // Observe the userCountRef element
     if (userCountRef.current) {
       observer.observe(userCountRef.current);
     }
 
-    // Cleanup function
     return () => observer.disconnect();
   }, []);
 
@@ -40,14 +54,26 @@ const LandingPage = ({ logo }) => {
     if (isVisible) {
       const interval = setInterval(() => {
         setUserCount((prevCount) => {
-          const newCount = prevCount + 4; // Increase by 23 (adjust speed as needed)
-          return newCount <= 2300 ? newCount : 2300; // Cap the count at 2300
+          const newCount = prevCount + 4;
+          return newCount <= 2300 ? newCount : 2300;
         });
-      }, 2); // Interval time (adjust for desired animation speed)
+      }, 2);
 
-      return () => clearInterval(interval); // Cleanup on unmount
+      return () => clearInterval(interval);
     }
   }, [isVisible]);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
 
   return (
     <div className="landing-container">
@@ -82,24 +108,6 @@ const LandingPage = ({ logo }) => {
             <i className="fas fa-calendar-alt"></i>
             <p>Calendar Integration</p>
           </div>
-          {/* Add more feature icons or cards as needed */}
-        </div>
-        <div className="testimonials">
-          <div className="testimonial">
-            <p>"Great app! It helped me organize my tasks efficiently."</p>
-            <div className="testimonial-author">
-              <img src={John} alt="John Doe" className="rounded-image" />
-              <p className="author">John Snow</p>
-            </div>
-          </div>
-          <div className="testimonial">
-            <p>"Awesome features! Very user-friendly interface."</p>
-            <div className="testimonial-author">
-              <img src={Dany} alt="Jane Smith" className="rounded-image" />
-              <p className="author">Dany</p>
-            </div>
-          </div>
-          {/* Add more testimonials as needed */}
         </div>
         <div ref={userCountRef} className="user-count-section">
           <h2>Join over</h2>
@@ -113,6 +121,33 @@ const LandingPage = ({ logo }) => {
           <Link to="/pricing" className="btn cta-btn">
             View Pricing
           </Link>
+        </div>
+        <PartnerSection />
+        <div className="testimonials-container">
+          <div className="testimonials">
+            <button className="carousel-btn left-btn" onClick={prevTestimonial}>
+              &#10094;
+            </button>
+            <div className="testimonial">
+              <p>{testimonials[currentTestimonial].quote}</p>
+              <div className="testimonial-author">
+                <img
+                  src={testimonials[currentTestimonial].image}
+                  alt={testimonials[currentTestimonial].author}
+                  className="rounded-image"
+                />
+                <p className="author">
+                  {testimonials[currentTestimonial].author}
+                </p>
+              </div>
+            </div>
+            <button
+              className="carousel-btn right-btn"
+              onClick={nextTestimonial}
+            >
+              &#10095;
+            </button>
+          </div>
         </div>
       </div>
     </div>

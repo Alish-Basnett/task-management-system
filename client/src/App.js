@@ -4,8 +4,6 @@ import logo from "./assets/images/no_bg_black_logo.png";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import "@fortawesome/fontawesome-free/css/all.css"; // Ensure you import the CSS
-
 import "./App.css";
 
 function App() {
