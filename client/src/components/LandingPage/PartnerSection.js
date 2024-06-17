@@ -26,14 +26,23 @@ const partners = [
 
 const PartnerSection = () => {
   return (
-    <div className="partner-section">
-      <h2>Our Trusted Partners</h2>
-      <div className="partner-logos">
-        {partners.map((partner, index) => (
-          <div className="partner-logo" key={index}>
-            <img src={partner.src} alt={partner.alt} />
+    <div className="partner-section-container">
+      <div className="partner-section">
+        <h2>Our Trusted Partners</h2>
+        <div className="partner-carousel">
+          <div className="partner-logos">
+            {partners.map((partner, index) => (
+              <div className="partner-logo" key={index}>
+                <img src={partner.src} alt={partner.alt} />
+              </div>
+            ))}
+            {partners.map((partner, index) => (
+              <div className="partner-logo" key={index + partners.length}>
+                <img src={partner.src} alt={partner.alt} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

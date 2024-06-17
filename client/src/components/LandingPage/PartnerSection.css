@@ -1,6 +1,14 @@
+.partner-section-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .partner-section {
   text-align: center;
   margin-top: 80px;
+  width: 80%;
 }
 
 .partner-section h2 {
@@ -9,30 +17,57 @@
   color: #333;
 }
 
+.partner-carousel {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
 .partner-logos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  display: flex;
+  animation: scrollLeft 20s linear infinite;
 }
 
 .partner-logo {
+  flex: 0 0 auto;
+  width: 100px;
+  margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  border: 1px solid #ccc;
 }
 
 .partner-logo img {
   width: 100%;
   height: auto;
-  transition: transform 0.3s ease;
 }
 
-.partner-logo:hover img {
-  transform: translateY(-5px) rotateX(10deg) rotateY(10deg);
+.partner-carousel::before,
+.partner-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 1;
+}
+
+.partner-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.partner-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, transparent);
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

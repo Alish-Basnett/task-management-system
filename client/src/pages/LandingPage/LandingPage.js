@@ -2,10 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import PartnerSection from "../../components/LandingPage/PartnerSection";
+import LoginPage from "../LoginPage/LoginPage"; // Import the LoginPage component
+import SignupPage from "../SignupPage/SignupPage"; // Import the SignupPage component
 
 // Sample images (replace with your actual image URLs)
 import John from "../../assets/images/JohnSnow.png";
 import Dany from "../../assets/images/Dany.png";
+import Arya from "../../assets/images/Arya.png";
 
 const testimonials = [
   {
@@ -18,6 +21,11 @@ const testimonials = [
     author: "Dany",
     image: Dany,
   },
+  {
+    quote: "Outstanding! I devote my success to Pro Manage!",
+    author: "Arya Stark",
+    image: Arya,
+  },
   // Add more testimonials as needed
 ];
 
@@ -26,6 +34,8 @@ const LandingPage = ({ logo }) => {
   const [userCount, setUserCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [showSignupPopup, setShowSignupPopup] = useState(false);
 
   useEffect(() => {
     const options = {
@@ -75,6 +85,22 @@ const LandingPage = ({ logo }) => {
     );
   };
 
+  const openLoginPopup = () => {
+    setShowLoginPopup(true);
+  };
+
+  const closeLoginPopup = () => {
+    setShowLoginPopup(false);
+  };
+
+  const openSignupPopup = () => {
+    setShowSignupPopup(true);
+  };
+
+  const closeSignupPopup = () => {
+    setShowSignupPopup(false);
+  };
+
   return (
     <div className="landing-container">
       <div className="header">
@@ -87,12 +113,12 @@ const LandingPage = ({ logo }) => {
             Contact
           </Link>
           <div className="button-group">
-            <Link to="/login">
-              <button className="btn login-btn">Login</button>
-            </Link>
-            <Link to="/signup">
-              <button className="btn signup-btn">Sign Up</button>
-            </Link>
+            <button className="btn login-btn" onClick={openLoginPopup}>
+              Login
+            </button>
+            <button className="btn signup-btn" onClick={openSignupPopup}>
+              Sign Up
+            </button>
           </div>
         </div>
       </div>
@@ -124,6 +150,14 @@ const LandingPage = ({ logo }) => {
         </div>
         <PartnerSection />
         <div className="testimonials-container">
+          <div className="testimonials-heading-container">
+            <span className="testimonial-colon">"</span>
+            <h2 className="testimonials-heading">
+              What our famous users say about Pro Manage!
+            </h2>
+            <span className="testimonial-colon">"</span>
+          </div>
+
           <div className="testimonials">
             <button className="carousel-btn left-btn" onClick={prevTestimonial}>
               &#10094;
@@ -150,6 +184,20 @@ const LandingPage = ({ logo }) => {
           </div>
         </div>
       </div>
+      {showLoginPopup && (
+        <div className="popup">
+          <div className="popup-inner">
+            <LoginPage onClose={closeLoginPopup} />
+          </div>
+        </div>
+      )}
+      {showSignupPopup && (
+        <div className="popup">
+          <div className="popup-inner">
+            <SignupPage onClose={closeSignupPopup} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
