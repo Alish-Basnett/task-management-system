@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import PartnerSection from "../../components/LandingPage/PartnerSection";
-import LoginPage from "../LoginPage/LoginPage"; // Import the LoginPage component
-import SignupPage from "../SignupPage/SignupPage"; // Import the SignupPage component
+import LoginPage from "../LoginPage/LoginPage";
+import SignupPage from "../SignupPage/SignupPage";
 
 // Sample images (replace with your actual image URLs)
 import John from "../../assets/images/JohnSnow.png";
@@ -34,8 +34,11 @@ const LandingPage = ({ logo }) => {
   const [userCount, setUserCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const [showSignupPopup, setShowSignupPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(null);
+
+  useEffect(() => {
+    document.title = "Pro Manage"; // Set your desired title here
+  }, []);
 
   useEffect(() => {
     const options = {
@@ -86,19 +89,18 @@ const LandingPage = ({ logo }) => {
   };
 
   const openLoginPopup = () => {
-    setShowLoginPopup(true);
+    setShowPopup("login");
+    document.body.classList.add("no-scroll"); // Add no-scroll class to body
   };
 
-  const closeLoginPopup = () => {
-    setShowLoginPopup(false);
+  const closePopup = () => {
+    setShowPopup(null);
+    document.body.classList.remove("no-scroll"); // Remove no-scroll class from body
   };
 
   const openSignupPopup = () => {
-    setShowSignupPopup(true);
-  };
-
-  const closeSignupPopup = () => {
-    setShowSignupPopup(false);
+    setShowPopup("signup");
+    document.body.classList.add("no-scroll"); // Add no-scroll class to body
   };
 
   return (
@@ -113,7 +115,7 @@ const LandingPage = ({ logo }) => {
             Contact
           </Link>
           <div className="button-group">
-            <button className="btn login-btn" onClick={openLoginPopup}>
+            <button className="btn nav-btn" onClick={openLoginPopup}>
               Login
             </button>
             <button className="btn signup-btn" onClick={openSignupPopup}>
@@ -184,17 +186,17 @@ const LandingPage = ({ logo }) => {
           </div>
         </div>
       </div>
-      {showLoginPopup && (
+      {showPopup === "login" && (
         <div className="popup">
           <div className="popup-inner">
-            <LoginPage onClose={closeLoginPopup} />
+            <LoginPage onClose={closePopup} openSignup={openSignupPopup} />
           </div>
         </div>
       )}
-      {showSignupPopup && (
+      {showPopup === "signup" && (
         <div className="popup">
           <div className="popup-inner">
-            <SignupPage onClose={closeSignupPopup} />
+            <SignupPage onClose={closePopup} openLogin={openLoginPopup} />
           </div>
         </div>
       )}

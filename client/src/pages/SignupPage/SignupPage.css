@@ -1,0 +1,18 @@
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-btn {
+  margin-right: 0;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.signup-logo-wrapper {
+  margin: 60px;
+}
